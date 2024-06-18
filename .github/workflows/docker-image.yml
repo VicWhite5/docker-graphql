@@ -23,11 +23,11 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build the Docker image #Paso para contruit la imagen
-      run: docker build --tag victor281201/docker-graphql:0.0.2 . #Construimos la imagen (Por los momentos ponemos el versionamiento asi)
-    - name: Push the Docker image #Paso para subir la imagen a Docker Hub
+    - name: Build the Docker image 
+      run: docker build --tag victor281201/docker-graphql:0.0.2 . 
+    - name: Push the Docker image 
       run: |
-        docker push victor281201/docker-graphql:0.0.2 #Subimos la imagen a Docker Hub
+        docker push victor281201/docker-graphql:0.0.3
 
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
