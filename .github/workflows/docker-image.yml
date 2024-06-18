@@ -12,7 +12,19 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    steps: # Cada una de estas rayitas es un paso
+    - name: Checkout code # Nombre legible (Usar lo que tenemos en el repositorio)
+      uses: actions/checkout@v4 # Este paso es para clonar el repositorio
+      with:
+        fetch-depth: 0 # Para que se clone todo el historial del repositorio
+    - name: Docker login #Para ver si me puuedo logear en Docker
+      env: # Variables de entorno (En nuestro caso, las credenciales de Docker Hub, aka los secrets)
+        DOCKER_USER: ${{ secrets.DOCKER_USER }} #Accedemos al primer secret
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} #Accedemos al segundo secret
+      run: |
+        echo "Iniciando login en Docker"
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        echo "Finalizando exitoso"
+
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
