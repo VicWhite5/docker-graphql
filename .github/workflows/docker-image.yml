@@ -24,7 +24,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image 
-      run: docker build --tag victor281201/docker-graphql:0.0.2 . 
+      run: docker build --tag victor281201/docker-graphql:0.0.3 . 
     - name: Push the Docker image 
       run: |
         docker push victor281201/docker-graphql:0.0.3
